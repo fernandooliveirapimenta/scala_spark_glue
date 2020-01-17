@@ -8,3 +8,5 @@ export SPARK_HOME=/home/$USER/spark-2.4.3-bin-spark-2.4.3-bin-hadoop2.8
 
 ## Run
 mvn exec:java -Dexec.mainClass="mainClass" -Dexec.args="--JOB-NAME jobName"
+mvn -s settings.xml exec:java -Dexec.mainClass="ResolveChoice" -Dexec.args="--JOB-NAME jobName"
+

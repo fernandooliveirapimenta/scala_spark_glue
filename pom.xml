@@ -7,7 +7,7 @@
     <description>AWS Glue ETL application</description>
 
         <properties>
-        <scala.version>2.13.1</scala.version>
+        <scala.version>2.11.1</scala.version>
         </properties>
 
     <dependencies>
