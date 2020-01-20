@@ -3,7 +3,7 @@ object Fernando extends App {
   val names = List("oi", "ola")
   println(names);
 
-  val nUpper = names map(_.toUpperCase())
+  val nUpper = names map(_ toUpperCase())
   val nUpper2 = names.map(_.toUpperCase())
 
   println(nUpper)
