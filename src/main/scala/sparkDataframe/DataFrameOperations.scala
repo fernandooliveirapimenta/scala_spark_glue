@@ -39,6 +39,8 @@ println()
 df.filter("High = 484.40").show()
 
 println()
+println()
+df.filter($"High" === 484.40).show()
 
 df.select(corr("High","Low")).show()
 
