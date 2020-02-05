@@ -1,46 +1,52 @@
 import org.apache.spark.sql.{DataFrame, Row, SparkSession}
 
-val spark: SparkSession = SparkSession.builder().getOrCreate()
+object DataFrameOperations extends App {
 
-val df: DataFrame = spark.read.option("header", "true").option("inferSchema", "true").csv("CitiGroup2006_2008")
+  val spark: SparkSession = SparkSession.builder().getOrCreate()
 
-df.printSchema()
+  val df: DataFrame = spark.read.option("header", "true").option("inferSchema", "true").csv("CitiGroup2006_2008")
 
-////////////////
-////////////////
+  df.printSchema()
 
-import  spark.implicits._
+  ////////////////
+  ////////////////
 
-df.filter($"Close">492).orderBy($"Close").show()
+  import  spark.implicits._
+
+  df.filter($"Close">492).orderBy($"Close").show()
 
 
-println()
-println()
+  println()
+  println()
 
-df.filter("Open = 496.9").show()
+  df.filter("Open = 496.9").show()
 
-println()
-println()
+  println()
+  println()
 
-df.filter($"Close" < 480 && $"High" < 480).show()
+  df.filter($"Close" < 480 && $"High" < 480).show()
 
-println()
-df.filter("Close < 480 AND High < 480").show()
+  println()
+  df.filter("Close < 480 AND High < 480").show()
 
-println()
-println()
+  println()
+  println()
 
-val CH_low: Array[Row] = df.filter($"Close" < 480 && $"High" < 480).collect()
+  val CH_low: Array[Row] = df.filter($"Close" < 480 && $"High" < 480).collect()
 
-val ChLowCount: Long = df.filter("Close < 480 AND High < 480").count()
+  val ChLowCount: Long = df.filter("Close < 480 AND High < 480").count()
 
-println()
+  println()
 
-df.filter("High = 484.40").show()
+  df.filter("High = 484.40").show()
 
-println()
-println()
-df.filter($"High" === 484.40).show()
+  println()
+  println()
+  df.filter($"High" === 484.40).show()
 
-df.select(corr("High","Low")).show()
+  import org.apache.spark.sql.functions._
 
+
+  df.select(corr("High","Low")).show()
+
+}

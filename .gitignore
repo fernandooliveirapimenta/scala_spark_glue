@@ -36,3 +36,4 @@ maven_repo/
 macroregioes.*
 src/main/resources/scripts/venv/
 *.attach*
+project/

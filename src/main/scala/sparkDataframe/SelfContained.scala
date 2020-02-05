@@ -1,0 +1,5 @@
+package sparkDataframe
+
+object SelfContained {
+
+}
