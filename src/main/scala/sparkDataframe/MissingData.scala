@@ -1,27 +1,32 @@
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
-val spark: SparkSession = SparkSession.builder().getOrCreate()
+object MissingData extends App {
 
-val df: DataFrame = spark.read.option("header", "true").option("inferSchema", "true").csv("ContainsNull.csv")
+  val spark: SparkSession = SparkSession.builder().getOrCreate()
 
-df.printSchema()
-
-df.show()
-
-
-println()
-df.na.drop().show()
-df.show()
-
-df.na.drop(2).show()
-
-df.na.fill(100).show()
-df.na.fill("Missing Name").show()
-
-df.na.fill("Missing Name", Array("Name")).show()
-println("completo")
-val df2: DataFrame = df.na.fill(200, Array("Sales"))
-df2.na.fill("missing name", Array("Name")).show()
+  val df: DataFrame = spark.read.option("header", "true").option("inferSchema", "true").csv("ContainsNull.csv")
+  df.printSchema()
 
 
+  df.show()
+
+
+  println()
+  df.na.drop().show()
+  df.show()
+
+  df.na.drop(2).show()
+
+  df.na.fill(100).show()
+  df.na.fill("Missing Name").show()
+
+  df.na.fill("Missing Name", Array("Name")).show()
+  println("completo")
+  val df2: DataFrame = df.na.fill(200, Array("Sales"))
+  df2.na.fill("missing name", Array("Name")).show()
+
+
+
+
+}
 
