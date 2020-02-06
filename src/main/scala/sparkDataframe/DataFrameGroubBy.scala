@@ -1,43 +1,47 @@
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.DataFrame
 
-object DataFrameGroubBy extends App{
-  val spark: SparkSession = SparkSession.builder().getOrCreate()
+object DataFrameGroubBy {
 
-  val df: DataFrame = spark.read.option("header", "true").option("inferSchema", "true").csv("Sales.csv")
+  def start(): Unit = {
+    val spark: SparkSession = SparkSession.builder().getOrCreate()
+
+    val df: DataFrame = spark.read.option("header", "true").option("inferSchema", "true").csv("Sales.csv")
 
 
-  df.printSchema()
+    df.printSchema()
 
-  println()
-  println()
 
-  df.select("*").show()
+    println()
+    println()
 
-  println()
-  println()
+    df.select("*").show()
 
-  df.groupBy("Company").mean().show()
-  df.groupBy("Company").avg().show()
-  df.groupBy("Company").count().show()
-  df.groupBy("Company").sum().show()
-  df.groupBy("Company").max().show()
-  df.groupBy("Company").min().show()
-  println()
+    println()
+    println()
 
-  import org.apache.spark.sql.functions._
+    df.groupBy("Company").mean().show()
+    df.groupBy("Company").avg().show()
+    df.groupBy("Company").count().show()
+    df.groupBy("Company").sum().show()
+    df.groupBy("Company").max().show()
+    df.groupBy("Company").min().show()
+    println()
 
-  df.select(sum("Sales")).show()
+    import org.apache.spark.sql.functions._
 
-  df.select(countDistinct("Sales")).show()
-  df.select(sumDistinct("Sales")).show()
-  df.select(variance("Sales")).show()
-  df.select(stddev("Sales")).show()
-  df.select(collect_set("Sales")).show()
+    df.select(sum("Sales")).show()
 
-  println()
-  df.show()
-  println()
-  df.orderBy("Sales").show()
+    df.select(countDistinct("Sales")).show()
+    df.select(sumDistinct("Sales")).show()
+    df.select(variance("Sales")).show()
+    df.select(stddev("Sales")).show()
+    df.select(collect_set("Sales")).show()
+
+    println()
+    df.show()
+    println()
+    df.orderBy("Sales").show()
+  }
 }
 
